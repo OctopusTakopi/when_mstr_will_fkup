@@ -32,3 +32,7 @@ derivation and shows a live calibration check.
 
 - `main.py` — the whole app
 - `requirements.txt` — dependencies
+
+## License
+
+MIT — see [LICENSE](LICENSE).
