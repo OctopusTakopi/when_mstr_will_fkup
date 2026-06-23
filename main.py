@@ -45,6 +45,7 @@ era_data = {
     "End of 2023 (Bear Recovery)": {
         "btc_holdings": 189150,        # 189,150 BTC as of Dec 31, 2023
         "debt_billions": 2.20,         # ~$2.2B convertible/senior notes
+        "usd_reserve_billions": 0.0,   # USD Reserve not yet established
         "shares_millions": 166.00,     # ~166M diluted (post 10:1 split basis)
         "historical_btc_price": 42000.0,
         "historical_mstr_price": 63.00,  # ~$63 post-split
@@ -53,6 +54,7 @@ era_data = {
     "End of 2024 (ETF Options Launch)": {
         "btc_holdings": 446400,        # 446,400 BTC as of Dec 31, 2024
         "debt_billions": 7.19,         # $7.19B long-term debt (10-K), no preferred
+        "usd_reserve_billions": 0.0,   # USD Reserve not yet established
         "shares_millions": 245.78,     # 226,138,000 class A + 19,640,250 class B (10-K)
         "historical_btc_price": 100000.0,
         "historical_mstr_price": 380.00,
@@ -61,15 +63,20 @@ era_data = {
     "End of 2025 (Preferred Stack)": {
         "btc_holdings": 672500,        # 713,502 (Q4'25 report) - 41,002 bought Jan 2026
         "debt_billions": 16.22,        # $8.19B notes + $8.03B preferred liq. pref. (10-K)
+        "usd_reserve_billions": 0.0,   # USD Reserve established Dec 1, 2025; year-end balance not disclosed
         "shares_millions": 312.06,     # 292,422,000 class A + 19,640,250 class B (10-K)
         "historical_btc_price": 87500.0,   # BTC close Dec 31, 2025 ~$87,509
         "historical_mstr_price": 152.00,   # MSTR close Dec 31, 2025 $151.95
         "floor_btc": 30000.0,
     },
     "Mid 2026 (Current Leverage)": {
-        "btc_holdings": 846842,        # 846,842 BTC as of Jun 15, 2026
-        "debt_billions": 22.20,        # ~$6.7B notes + ~$15.5B preferred (late-May '26)
-        "shares_millions": 349.36,     # ~346.8M class A+B (Apr 2026 record date)
+        # 847,363 BTC as of Jun 21, 2026 (8-K filed Jun 22, 2026); aggregate
+        # cost $64.10B, average $75,651/BTC. Latest weekly buy: 520 BTC for
+        # $34.9M (avg $67,068).
+        "btc_holdings": 847363,
+        "debt_billions": 22.20,        # ~$6.7B notes + ~$15.5B preferred (late-May '26; not in the 8-K)
+        "usd_reserve_billions": 1.40,  # USD Reserve balance as of Jun 21, 2026 (8-K filed Jun 22, 2026)
+        "shares_millions": 352.07,     # +2.71M class A via ATM (Jun 15-21, 2026 8-K) atop ~349.36M prior est.
         "historical_btc_price": 62600.0,   # BTC ~$60-65k mid-Jun 2026
         "historical_mstr_price": 112.00,   # MSTR ~$112-118 mid-Jun 2026
         "floor_btc": 30000.0,
@@ -88,6 +95,7 @@ selected_era = st.sidebar.selectbox(
 active_profile = era_data[selected_era]
 btc_holdings = active_profile["btc_holdings"]
 total_debt = active_profile["debt_billions"] * 1_000_000_000
+usd_reserve = active_profile.get("usd_reserve_billions", 0.0) * 1_000_000_000
 shares_outstanding = active_profile["shares_millions"] * 1_000_000
 anchor_btc = active_profile["historical_btc_price"]
 anchor_mstr = active_profile["historical_mstr_price"]
@@ -144,7 +152,7 @@ floor_btc_input = st.sidebar.slider(
 alpha_parameter = anchor_mstr / anchor_btc
 
 # MODEL 2 PARAMETERS: levered net equity & calibrated premium line.
-anchor_gross_assets = anchor_btc * btc_holdings
+anchor_gross_assets = anchor_btc * btc_holdings + usd_reserve
 anchor_net_equity = max(0.01, anchor_gross_assets - total_debt)
 anchor_nav_per_share = anchor_net_equity / shares_outstanding
 actual_anchor_premium = anchor_mstr / anchor_nav_per_share
@@ -196,7 +204,7 @@ def evaluate_models(target_price_btc):
     m1_price = alpha_parameter * target_price_btc
 
     # Model 2: levered NAV, floored at zero (equity wiped out below debt).
-    gross_assets = target_price_btc * btc_holdings
+    gross_assets = target_price_btc * btc_holdings + usd_reserve
     net_equity = max(0.0, gross_assets - total_debt)
     nav_per_share = net_equity / shares_outstanding
 
@@ -368,10 +376,14 @@ with tab_math:
     st.write("#### Step A: Capital Structure (NAV per Share)")
     st.latex(
         r"\text{NAV per Share} = \frac{(\text{BTC Price} \cdot \text{Holdings})"
-        r" - \text{Senior Liabilities}}{\text{Shares Outstanding}}"
+        r" + \text{USD Reserve} - \text{Senior Liabilities}}{\text{Shares Outstanding}}"
     )
     st.write("**Active Balance-Sheet Inputs:**")
     st.write(f"* **Corporate BTC Inventory:** {btc_holdings:,.0f} BTC")
+    st.write(
+        f"* **USD Reserve (cash assets):** ${usd_reserve:,.2f} "
+        f"(${active_profile.get('usd_reserve_billions', 0.0)} Billion)"
+    )
     st.write(
         f"* **Total Senior Liabilities:** ${total_debt:,.2f} "
         f"(${active_profile['debt_billions']} Billion)"
