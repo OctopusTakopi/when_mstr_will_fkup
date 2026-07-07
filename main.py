@@ -77,18 +77,23 @@ era_data = {
         "floor_btc": 30000.0,
     },
     "Mid 2026 (Current Leverage)": {
-        # 847,363 BTC as of Jun 21, 2026 (8-K filed Jun 22, 2026); aggregate
-        # cost $64.10B, average $75,651/BTC. Latest weekly buy: 520 BTC for
-        # $34.9M (avg $67,068).
-        "btc_holdings": 847363,
-        "debt_billions": 22.20,        # ~$6.7B notes + ~$15.5B preferred (late-May '26; not in the 8-K)
+        # 843,775 BTC as of Jul 5, 2026 (8-K filed Jul 6, 2026); aggregate cost
+        # $63.69B, average $75,476/BTC. First-ever confirmed BTC SALES: 1,363
+        # BTC sold Jun 29-30 (avg $59,256) and 2,225 BTC sold Jul 1-5 (avg
+        # $60,773), under a new "BTC Monetization Program" (announced Jun 29,
+        # 2026; up to $1.25B capacity, all unused as of Jul 5) -- proceeds
+        # funded preferred distributions and replenished the USD Reserve.
+        "btc_holdings": 843775,
+        "debt_billions": 22.20,        # ~$6.7B notes + ~$15.5B preferred (late-May '26; still not updated in an 8-K)
         "annual_carry_billions": 1.76, # ~$1.76B annual preferred dividends + interest (8-K Jun 29, 2026)
-        "usd_reserve_billions": 2.55,  # USD Reserve ~$2.55B as of Jun 28, 2026 (8-K dated Jun 29, 2026);
+        "usd_reserve_billions": 2.55,  # USD Reserve $2.55B as of Jul 5, 2026 (8-K filed Jul 6, 2026) --
+                                       # confirmed unchanged from the Jun 28 balance: BTC-sale proceeds
+                                       # replenished the reserve after funding preferred distributions.
                                        # ~17.4 months of the ~$1.76B annual preferred dividend + interest
                                        # expense. Includes unsettled ATM proceeds as of that date.
-        "shares_millions": 352.07,     # +2.71M class A via ATM (Jun 15-21, 2026 8-K) atop ~349.36M prior est.
-        "historical_btc_price": 62600.0,   # BTC ~$60-65k mid-Jun 2026
-        "historical_mstr_price": 112.00,   # MSTR ~$112-118 mid-Jun 2026
+        "shares_millions": 352.07,     # unchanged: 8-K confirms no ATM share sales Jun 29-Jul 5, 2026
+        "historical_btc_price": 62600.0,   # BTC ~$60-64k early Jul 2026 (sales executed $59.3k-$60.8k; spot ~$62.6-62.9k Jul 6)
+        "historical_mstr_price": 97.00,    # MSTR ~$93-104 early Jul 2026 (prior close $93.39, intraday high $104.11 Jul 6) -- down sharply after the Q2 8-K's $8.32B unrealized digital-asset loss
         "floor_btc": 30000.0,
         # Upper regression anchor: STRC preferred IPO pricing day (Jul 24, 2025),
         # when the market first priced the dividend "carry." Real closes that day:
