@@ -77,19 +77,19 @@ era_data = {
         "floor_btc": 30000.0,
     },
     "Mid 2026 (Current Leverage)": {
-        # 843,775 BTC as of Jul 26, 2026 (8-K filed Jul 27, 2026); aggregate cost
-        # $63.69B, average $75,476/BTC. Holdings unchanged for a second straight
-        # week -- no bitcoin purchases during Jul 20-26 (the BTC
-        # Monetization Program, announced Jun 29 with up to $1.25B capacity, saw
-        # no new activity; its only sales remain 1,363 BTC Jun 29-30 @ $59,256
-        # and 2,225 BTC Jul 1-5 @ $60,773). This week's capital activity was
-        # 5,429,160 MSTR shares sold for $544.5M net proceeds and 288,930 STRC
-        # shares repurchased for $25.0M; no preferred shares were sold.
-        "btc_holdings": 843775,
-        "debt_billions": 22.17,        # prior ~$22.20B senior claims less $28.893M STRC liquidation preference repurchased Jul 20-26
+        # 842,138 BTC as of Aug 2, 2026 (8-K filed Aug 3, 2026); aggregate cost
+        # $63.51B, average $75,419/BTC. First bitcoin sale in three weeks: 1,638
+        # BTC sold Jul 27-Aug 2 @ avg $63,957 (the BTC Monetization Program,
+        # announced Jun 29 with up to $1.25B capacity; proceeds funded preferred
+        # dividends and STRC repurchases). This week's capital activity was
+        # 3,011,361 MSTR shares sold via ATM for $290.6M net proceeds ($250.0M to
+        # USD Reserve, $28.9M to STRC repurchases, $11.7M to cash) and 912,143
+        # STRC shares repurchased for $81.2M; no preferred shares were sold.
+        "btc_holdings": 842138,
+        "debt_billions": 22.08,        # prior ~$22.17B senior claims less $91.2M STRC liquidation preference repurchased Jul 27-Aug 2
         "annual_carry_billions": 1.76, # ~$1.76B annual preferred dividends + interest (8-K Jun 29, 2026)
-        "usd_reserve_billions": 3.75,  # USD Reserve as of Jul 26, 2026 (8-K filed Jul 27, 2026); includes unsettled ATM proceeds
-        "shares_millions": 365.05,     # prior ~359.62M + 5,429,160 Class A sold via ATM Jul 20-26, 2026 (8-K)
+        "usd_reserve_billions": 4.0,   # USD Reserve as of Aug 2, 2026 (8-K filed Aug 3, 2026); includes unsettled ATM proceeds
+        "shares_millions": 368.06,     # prior ~365.05M + 3,011,361 Class A sold via ATM Jul 27-Aug 2, 2026 (8-K)
         "historical_btc_price": 62600.0,   # BTC ~$60-64k early Jul 2026 (sales executed $59.3k-$60.8k; spot ~$62.6-62.9k Jul 6)
         "historical_mstr_price": 97.00,    # MSTR ~$93-104 early Jul 2026 (prior close $93.39, intraday high $104.11 Jul 6) -- down sharply after the Q2 8-K's $8.32B unrealized digital-asset loss
         "floor_btc": 30000.0,
