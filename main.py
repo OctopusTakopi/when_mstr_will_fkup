@@ -102,6 +102,26 @@ era_data = {
         "regression_anchor_btc": 118368.0,
         "regression_anchor_mstr": 414.92,
     },
+    "Mid 2026 (Active BTC Selling)": {
+        # 840,447 BTC as of Aug 9, 2026 (8-K filed Aug 10, 2026); aggregate cost
+        # $63.36B, average $75,385/BTC. Second bitcoin sale in the program: 1,690
+        # BTC sold Aug 3-9 @ avg $64,262 (the BTC Monetization Program,
+        # announced Jun 29 with up to $1.25B capacity; proceeds funded STRC
+        # repurchases). This week's capital activity was 6,585,682 MSTR shares
+        # sold via ATM for $653.1M net proceeds ($650.0M to USD Reserve,
+        # $3.1M to cash) and 1,152,020 STRC shares repurchased for $108.6M;
+        # no preferred shares were sold.
+        "btc_holdings": 840447,
+        "debt_billions": 21.96,        # prior ~$22.08B senior claims less $115.2M STRC liquidation preference repurchased Aug 3-9
+        "annual_carry_billions": 1.76, # ~$1.76B annual preferred dividends + interest (8-K Jun 29, 2026)
+        "usd_reserve_billions": 4.65,  # USD Reserve as of Aug 9, 2026 (8-K filed Aug 10, 2026); includes unsettled ATM proceeds
+        "shares_millions": 374.65,     # prior ~368.06M + 6,585,682 Class A sold via ATM Aug 3-9, 2026 (8-K)
+        "historical_btc_price": 62600.0,   # BTC ~$60-64k early Jul 2026 (sales executed $59.3k-$60.8k; spot ~$62.6-62.9k Jul 6)
+        "historical_mstr_price": 97.00,    # MSTR ~$93-104 early Jul 2026 (prior close $93.39, intraday high $104.11 Jul 6) -- down sharply after the Q2 8-K's $8.32B unrealized digital-asset loss
+        "floor_btc": 30000.0,
+        "regression_anchor_btc": 118368.0,
+        "regression_anchor_mstr": 414.92,
+    },
 }
 
 # ---------------------------------------------------------
@@ -109,7 +129,7 @@ era_data = {
 # ---------------------------------------------------------
 st.sidebar.header("1. Select Target Era Configuration")
 selected_era = st.sidebar.selectbox(
-    "Active Balance Sheet Profile", list(era_data.keys()), index=3
+    "Active Balance Sheet Profile", list(era_data.keys()), index=4
 )
 
 # Load data state based on selection.
