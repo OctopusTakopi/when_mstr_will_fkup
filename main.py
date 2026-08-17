@@ -122,6 +122,26 @@ era_data = {
         "regression_anchor_btc": 118368.0,
         "regression_anchor_mstr": 414.92,
     },
+    "Mid 2026 (BTC Sales Paused)": {
+        # 840,447 BTC as of Aug 16, 2026 (8-K filed Aug 17, 2026); aggregate
+        # cost $63.36B, average $75,385/BTC. First week with no bitcoin
+        # purchases or sales since the BTC Monetization Program began
+        # (announced Jun 29 with up to $1.25B capacity). This week's capital
+        # activity was 3,458,866 MSTR shares sold via ATM for $333.7M net
+        # proceeds ($149.1M to USD Reserve, $132.2M to STRC repurchases,
+        # $52.4M to STRC dividends) and 1,388,720 STRC shares repurchased for
+        # $132.2M; no preferred shares were sold.
+        "btc_holdings": 840447,
+        "debt_billions": 21.82,        # prior ~$21.96B senior claims less $138.9M STRC liquidation preference repurchased Aug 10-16
+        "annual_carry_billions": 1.76, # ~$1.76B annual preferred dividends + interest (8-K Jun 29, 2026)
+        "usd_reserve_billions": 4.80,  # USD Reserve as of Aug 16, 2026 (8-K filed Aug 17, 2026); includes unsettled ATM proceeds
+        "shares_millions": 378.11,     # prior ~374.65M + 3,458,866 Class A sold via ATM Aug 10-16, 2026 (8-K)
+        "historical_btc_price": 62800.0,   # BTC close Aug 16, 2026 $62,818.65
+        "historical_mstr_price": 93.04,    # MSTR close Aug 14, 2026 $93.04 (last trading day before the Aug 16 snapshot)
+        "floor_btc": 30000.0,
+        "regression_anchor_btc": 118368.0,
+        "regression_anchor_mstr": 414.92,
+    },
 }
 
 # ---------------------------------------------------------
@@ -129,7 +149,7 @@ era_data = {
 # ---------------------------------------------------------
 st.sidebar.header("1. Select Target Era Configuration")
 selected_era = st.sidebar.selectbox(
-    "Active Balance Sheet Profile", list(era_data.keys()), index=4
+    "Active Balance Sheet Profile", list(era_data.keys()), index=5
 )
 
 # Load data state based on selection.
