@@ -87,7 +87,7 @@ era_data = {
         # STRC shares repurchased for $81.2M; no preferred shares were sold.
         "btc_holdings": 842138,
         "debt_billions": 22.08,        # prior ~$22.17B senior claims less $91.2M STRC liquidation preference repurchased Jul 27-Aug 2
-        "annual_carry_billions": 1.76, # ~$1.76B annual preferred dividends + interest (8-K Jun 29, 2026)
+        "annual_carry_billions": 1.75, # $1.76B (8-K Jun 29) less ~$11M/yr from 912,143 STRC retired @ $12/share
         "usd_reserve_billions": 4.0,   # USD Reserve as of Aug 2, 2026 (8-K filed Aug 3, 2026); includes unsettled ATM proceeds
         "shares_millions": 368.06,     # prior ~365.05M + 3,011,361 Class A sold via ATM Jul 27-Aug 2, 2026 (8-K)
         "historical_btc_price": 62600.0,   # BTC ~$60-64k early Jul 2026 (sales executed $59.3k-$60.8k; spot ~$62.6-62.9k Jul 6)
@@ -113,7 +113,7 @@ era_data = {
         # no preferred shares were sold.
         "btc_holdings": 840447,
         "debt_billions": 21.96,        # prior ~$22.08B senior claims less $115.2M STRC liquidation preference repurchased Aug 3-9
-        "annual_carry_billions": 1.76, # ~$1.76B annual preferred dividends + interest (8-K Jun 29, 2026)
+        "annual_carry_billions": 1.74, # $1.76B (8-K Jun 29) less ~$25M/yr from 2.06M STRC retired cumulatively @ $12/share
         "usd_reserve_billions": 4.65,  # USD Reserve as of Aug 9, 2026 (8-K filed Aug 10, 2026); includes unsettled ATM proceeds
         "shares_millions": 374.65,     # prior ~368.06M + 6,585,682 Class A sold via ATM Aug 3-9, 2026 (8-K)
         "historical_btc_price": 62600.0,   # BTC ~$60-64k early Jul 2026 (sales executed $59.3k-$60.8k; spot ~$62.6-62.9k Jul 6)
@@ -133,11 +133,104 @@ era_data = {
         # $132.2M; no preferred shares were sold.
         "btc_holdings": 840447,
         "debt_billions": 21.82,        # prior ~$21.96B senior claims less $138.9M STRC liquidation preference repurchased Aug 10-16
-        "annual_carry_billions": 1.76, # ~$1.76B annual preferred dividends + interest (8-K Jun 29, 2026)
+        "annual_carry_billions": 1.72, # $1.76B (8-K Jun 29) less ~$41M/yr from 3.45M STRC retired cumulatively @ $12/share
         "usd_reserve_billions": 4.80,  # USD Reserve as of Aug 16, 2026 (8-K filed Aug 17, 2026); includes unsettled ATM proceeds
         "shares_millions": 378.11,     # prior ~374.65M + 3,458,866 Class A sold via ATM Aug 10-16, 2026 (8-K)
         "historical_btc_price": 62800.0,   # BTC close Aug 16, 2026 $62,818.65
         "historical_mstr_price": 93.04,    # MSTR close Aug 14, 2026 $93.04 (last trading day before the Aug 16 snapshot)
+        "floor_btc": 30000.0,
+        "regression_anchor_btc": 118368.0,
+        "regression_anchor_mstr": 414.92,
+    },
+    "Mid 2026 (USD Cash Launch)": {
+        # 840,447 BTC as of Aug 23, 2026 (8-K filed Aug 24, 2026); aggregate
+        # cost $63.36B, average $75,385/BTC. Second consecutive week with no
+        # bitcoin purchases or sales since the BTC Monetization Program began
+        # (announced Jun 29 with up to $1.25B capacity). This 8-K also
+        # established "USD Cash," a new component of the Digital Credit
+        # Capital Framework: a separately designated pool of USD liquidity
+        # for general Bitcoin Treasury Company purposes (bitcoin purchases,
+        # preferred dividends, interest, MSTR/preferred/convert repurchases,
+        # USD Reserve top-ups), complementing the dividend/interest-earmarked
+        # USD Reserve. This week's capital activity was 18,261,118 MSTR
+        # shares sold via ATM for $2,006.5M net proceeds ($300.0M to USD
+        # Reserve, $136.4M to STRC repurchases, remaining $1,570.1M to USD
+        # Cash) and 1,431,212 STRC shares repurchased for $136.4M; no
+        # preferred shares were sold.
+        "btc_holdings": 840447,
+        "debt_billions": 21.68,        # prior ~$21.82B senior claims less $143.1M STRC liquidation preference repurchased Aug 17-23
+        "annual_carry_billions": 1.70, # $1.76B (8-K Jun 29) less ~$59M/yr from 4.88M STRC retired cumulatively @ $12/share
+        "usd_reserve_billions": 5.10,  # USD Reserve as of Aug 23, 2026 (8-K filed Aug 24, 2026); includes unsettled ATM proceeds
+        "usd_cash_billions": 1.59,     # USD Cash as of Aug 23, 2026 (8-K filed Aug 24, 2026); includes unsettled ATM proceeds
+        "shares_millions": 396.37,     # prior ~378.11M + 18,261,118 Class A sold via ATM Aug 17-23, 2026 (8-K)
+        "historical_btc_price": 77755.0,   # BTC close Aug 23, 2026 $77,755.27
+        "historical_mstr_price": 119.25,   # MSTR close Aug 21, 2026 $119.25 (last trading day before the Aug 23 snapshot)
+        "floor_btc": 30000.0,
+        "regression_anchor_btc": 118368.0,
+        "regression_anchor_mstr": 414.92,
+    },
+    "Mid 2026 (BTC Buying Resumed)": {
+        # 845,050 BTC as of Aug 30, 2026 (8-K filed Aug 31, 2026); aggregate
+        # cost $63.73B, average $75,412/BTC. First bitcoin purchase since the
+        # BTC Monetization Program sales (announced Jun 29): 4,603 BTC bought
+        # Aug 24-30 for $369.7M at an average $80,318/BTC, funded entirely by
+        # MSTR ATM proceeds. This week's capital activity was 4,531,421 MSTR
+        # shares sold via ATM for $602.8M net proceeds ($369.7M to bitcoin
+        # purchases, $151.8M to STRC repurchases, $50.7M to STRC dividends,
+        # $30.0M to USD Cash) and 1,557,177 STRC shares repurchased for
+        # $151.8M; no preferred shares were sold. $364.8M remains under the
+        # Digital Credit Securities Repurchase Program and $1.0B under the
+        # MSTR repurchase program.
+        "btc_holdings": 845050,
+        "debt_billions": 21.52,        # prior ~$21.68B senior claims less $155.7M STRC liquidation preference repurchased Aug 24-30
+        "annual_carry_billions": 1.68, # $1.76B (8-K Jun 29) less ~$77M/yr from 6.44M STRC retired cumulatively @ $12/share
+        "usd_reserve_billions": 5.10,  # USD Reserve as of Aug 30, 2026 (8-K filed Aug 31, 2026); includes unsettled ATM proceeds
+        "usd_cash_billions": 1.61,     # USD Cash as of Aug 30, 2026 (8-K filed Aug 31, 2026); includes unsettled ATM proceeds
+        "shares_millions": 400.90,     # prior ~396.37M + 4,531,421 Class A sold via ATM Aug 24-30, 2026 (8-K)
+        "historical_btc_price": 77658.0,   # BTC close Aug 30, 2026 ~$77,658 (CoinGecko 00:00 UTC Aug 31; Yahoo daily bar unavailable)
+        "historical_mstr_price": 127.31,   # MSTR close Aug 28, 2026 $127.31 (last trading day before the Aug 30 snapshot)
+        "floor_btc": 30000.0,
+        "regression_anchor_btc": 118368.0,
+        "regression_anchor_mstr": 414.92,
+    },
+    "Mid 2026 (STRC Buyback Scale-Up)": {
+        # 845,050 BTC as of Sep 7, 2026 (8-K filed Sep 8, 2026); aggregate
+        # cost $63.73B, average $75,412/BTC. No bitcoin purchases or sales
+        # and no ATM share sales during Aug 31-Sep 7. Board increased the
+        # Digital Credit Securities Repurchase Program from $1.0B to $2.0B;
+        # $1.19B remained available as of Sep 7. This week's capital activity
+        # was 1,810,885 STRC shares repurchased for $176.3M, funded entirely
+        # from USD Cash; no STRF/STRK/STRD/MSTR shares were sold or
+        # repurchased. $1.0B remains under the MSTR repurchase program.
+        "btc_holdings": 845050,
+        "debt_billions": 21.34,        # prior ~$21.52B senior claims less $181.1M STRC liquidation preference repurchased Aug 31-Sep 7
+        "annual_carry_billions": 1.66, # $1.76B (8-K Jun 29) less ~$99M/yr from 8.25M STRC retired cumulatively @ $12/share
+        "usd_reserve_billions": 5.10,  # USD Reserve as of Sep 7, 2026 (8-K filed Sep 8, 2026)
+        "usd_cash_billions": 1.44,     # USD Cash as of Sep 7, 2026 (8-K filed Sep 8, 2026); $176.3M used for STRC repurchases
+        "shares_millions": 400.90,     # unchanged; no MSTR ATM sales Aug 31-Sep 7, 2026 (8-K)
+        "historical_btc_price": 79116.0,   # BTC close Sep 7, 2026 $79,115.85
+        "historical_mstr_price": 142.80,   # MSTR close Sep 4, 2026 $142.80 (last trading day before the Sep 7 snapshot; Labor Day)
+        "floor_btc": 30000.0,
+        "regression_anchor_btc": 118368.0,
+        "regression_anchor_mstr": 414.92,
+    },
+    "Mid 2026 (USD Cash Drawdown)": {
+        # 845,050 BTC as of Sep 13, 2026 (8-K filed Sep 14, 2026); aggregate
+        # cost $63.73B, average $75,412/BTC. Second consecutive week with no
+        # bitcoin purchases or sales and no MSTR ATM share sales. This week's
+        # only capital activity was 1,420,467 STRC shares repurchased for
+        # $139.3M, funded entirely from USD Cash ($1.44B -> $1.30B); no
+        # STRF/STRK/STRD/MSTR shares were sold or repurchased. $1.05B remains
+        # under the Digital Credit Securities Repurchase Program (down from
+        # $1.19B) and $1.0B under the MSTR repurchase program.
+        "btc_holdings": 845050,
+        "debt_billions": 21.20,        # prior ~$21.34B senior claims less $142.0M STRC liquidation preference repurchased Sep 8-13
+        "annual_carry_billions": 1.64, # $1.76B (8-K Jun 29) less ~$116M/yr from 9.67M STRC retired cumulatively @ $12/share
+        "usd_reserve_billions": 5.10,  # USD Reserve as of Sep 13, 2026 (8-K filed Sep 14, 2026)
+        "usd_cash_billions": 1.30,     # USD Cash as of Sep 13, 2026 (8-K filed Sep 14, 2026); $139.3M used for STRC repurchases
+        "shares_millions": 400.90,     # unchanged; no MSTR ATM sales Sep 8-13, 2026 (8-K)
+        "historical_btc_price": 76838.0,   # BTC close Sep 13, 2026 $76,838.16
+        "historical_mstr_price": 130.97,   # MSTR close Sep 11, 2026 $130.97 (last trading day before the Sep 13 snapshot)
         "floor_btc": 30000.0,
         "regression_anchor_btc": 118368.0,
         "regression_anchor_mstr": 414.92,
@@ -149,7 +242,7 @@ era_data = {
 # ---------------------------------------------------------
 st.sidebar.header("1. Select Target Era Configuration")
 selected_era = st.sidebar.selectbox(
-    "Active Balance Sheet Profile", list(era_data.keys()), index=5
+    "Active Balance Sheet Profile", list(era_data.keys()), index=9
 )
 
 # Load data state based on selection.
@@ -157,6 +250,7 @@ active_profile = era_data[selected_era]
 btc_holdings = active_profile["btc_holdings"]
 total_debt = active_profile["debt_billions"] * 1_000_000_000
 usd_reserve = active_profile.get("usd_reserve_billions", 0.0) * 1_000_000_000
+usd_cash = active_profile.get("usd_cash_billions", 0.0) * 1_000_000_000
 annual_carry = active_profile.get("annual_carry_billions", 0.0) * 1_000_000_000
 shares_outstanding = active_profile["shares_millions"] * 1_000_000
 anchor_btc = active_profile["historical_btc_price"]
@@ -214,7 +308,7 @@ floor_btc_input = st.sidebar.slider(
 alpha_parameter = anchor_mstr / anchor_btc
 
 # MODEL 2 PARAMETERS: levered net equity & calibrated premium line.
-anchor_gross_assets = anchor_btc * btc_holdings + usd_reserve
+anchor_gross_assets = anchor_btc * btc_holdings + usd_reserve + usd_cash
 anchor_net_equity = max(0.01, anchor_gross_assets - total_debt)
 anchor_nav_per_share = anchor_net_equity / shares_outstanding
 actual_anchor_premium = anchor_mstr / anchor_nav_per_share
@@ -300,7 +394,7 @@ anchor_carry_drag = annual_carry * carry_horizon_years
 
 def m3_carry_adj_nav(btc_price):
     """Carry-adjusted NAV per share for the active era at a given BTC price."""
-    g = btc_price * btc_holdings + usd_reserve
+    g = btc_price * btc_holdings + usd_reserve + usd_cash
     return max(0.01, g - total_debt - anchor_carry_drag) / shares_outstanding
 
 
@@ -348,7 +442,7 @@ def evaluate_models(target_price_btc):
     m1_price = alpha_parameter * target_price_btc
 
     # Model 2: levered NAV, floored at zero (equity wiped out below debt).
-    gross_assets = target_price_btc * btc_holdings + usd_reserve
+    gross_assets = target_price_btc * btc_holdings + usd_reserve + usd_cash
     net_equity = max(0.0, gross_assets - total_debt)
     nav_per_share = net_equity / shares_outstanding
 
@@ -579,13 +673,17 @@ with tab_math:
     st.write("#### Step A: Capital Structure (NAV per Share)")
     st.latex(
         r"\text{NAV per Share} = \frac{(\text{BTC Price} \cdot \text{Holdings})"
-        r" + \text{USD Reserve} - \text{Senior Liabilities}}{\text{Shares Outstanding}}"
+        r" + \text{USD Reserve} + \text{USD Cash} - \text{Senior Liabilities}}{\text{Shares Outstanding}}"
     )
     st.write("**Active Balance-Sheet Inputs:**")
     st.write(f"* **Corporate BTC Inventory:** {btc_holdings:,.0f} BTC")
     st.write(
         f"* **USD Reserve (cash assets):** ${usd_reserve:,.2f} "
         f"(${active_profile.get('usd_reserve_billions', 0.0)} Billion)"
+    )
+    st.write(
+        f"* **USD Cash (liquidity pool):** ${usd_cash:,.2f} "
+        f"(${active_profile.get('usd_cash_billions', 0.0)} Billion)"
     )
     st.write(
         f"* **Total Senior Liabilities:** ${total_debt:,.2f} "
@@ -744,8 +842,9 @@ with tab_math:
     else:
         st.warning("⚠️ Model 3 does not reproduce the anchor for this configuration.")
     st.caption(
-        "Carry figures for pre-2026 eras are rough estimates; the Mid-2026 carry "
-        "is the ~$1.76B disclosed in the Jun 29, 2026 8-K. The STRC anchor uses "
+        "Carry figures for pre-2026 eras are rough estimates; Mid-2026 starts from "
+        "the ~$1.76B disclosed in the Jun 29, 2026 8-K and is stepped down as STRC "
+        "is retired (~$12/share/yr at the 12% stated rate). The STRC anchor uses "
         "the real Jul 24, 2025 closes (BTC ~$118,368, MSTR ~$414.92)."
     )
 
