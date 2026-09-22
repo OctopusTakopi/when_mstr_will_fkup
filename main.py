@@ -235,6 +235,31 @@ era_data = {
         "regression_anchor_btc": 118368.0,
         "regression_anchor_mstr": 414.92,
     },
+    "Mid 2026 (USD Cash Deployed)": {
+        # 846,000 BTC as of Sep 20, 2026 (8-K filed Sep 21, 2026); aggregate
+        # cost $63.80B, average $75,416/BTC. Third consecutive week with no
+        # MSTR ATM sales; the week's only bitcoin activity was a 950 BTC
+        # purchase for $75.7M at an average $79,670/BTC, funded entirely from
+        # USD Cash -- the first BTC buy drawn from that pool rather than from
+        # ATM proceeds. Capital activity was 1,771,238 STRC shares repurchased
+        # for $174.0M (USD Cash); no STRF/STRK/STRD/MSTR shares were sold or
+        # repurchased. $174.0M of USD Cash went to STRC buybacks and $75.7M to
+        # bitcoin, while $57.4M of the USD Reserve funded preferred dividends
+        # and debt interest. $875.1M remains under the Digital Credit
+        # Securities Repurchase Program and $1.0B under the MSTR repurchase
+        # program.
+        "btc_holdings": 846000,
+        "debt_billions": 21.02,        # prior ~$21.20B senior claims less $177.1M STRC liquidation preference repurchased Sep 14-20
+        "annual_carry_billions": 1.62, # $1.76B (8-K Jun 29) less ~$137M/yr from 11.44M STRC retired cumulatively @ $12/share
+        "usd_reserve_billions": 5.04,  # USD Reserve as of Sep 20, 2026 (8-K filed Sep 21, 2026); $57.4M used for dividends/interest
+        "usd_cash_billions": 1.05,     # USD Cash as of Sep 20, 2026 (8-K filed Sep 21, 2026); $174.0M STRC + $75.7M BTC deployed
+        "shares_millions": 400.90,     # unchanged; no MSTR ATM sales Sep 14-20, 2026 (8-K)
+        "historical_btc_price": 81143.0,    # BTC close Sep 20, 2026 $81,142.61
+        "historical_mstr_price": 153.92,    # MSTR close Sep 18, 2026 $153.92 (last trading day before the Sep 20 snapshot)
+        "floor_btc": 30000.0,
+        "regression_anchor_btc": 118368.0,
+        "regression_anchor_mstr": 414.92,
+    },
 }
 
 # ---------------------------------------------------------
@@ -242,7 +267,7 @@ era_data = {
 # ---------------------------------------------------------
 st.sidebar.header("1. Select Target Era Configuration")
 selected_era = st.sidebar.selectbox(
-    "Active Balance Sheet Profile", list(era_data.keys()), index=9
+    "Active Balance Sheet Profile", list(era_data.keys()), index=10
 )
 
 # Load data state based on selection.
