@@ -25,6 +25,12 @@ Opens at http://localhost:8501.
 - **Model 2** — levered NAV per share times a premium that's auto-calibrated to
   reproduce the era's anchor exactly.
 
+The dashboard also charts the **premium history**: every era's anchor premium
+(MSTR price over its own NAV per share) next to BTC per share, with the 1.0x NAV
+issuance break-even marked. The share count only grows coin per share while the
+issuance premium clears the BTC-yield break-even (~1.3x NAV if all ATM proceeds
+buy BTC, higher when some fund preferred buybacks).
+
 The "Mathematical Derivations" tab in the app walks through the full
 derivation and shows a live calibration check.
 

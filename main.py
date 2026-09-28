@@ -22,6 +22,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 import yfinance as yf
+from plotly.subplots import make_subplots
 
 st.set_page_config(page_title="MSTR Regression Model Engine", layout="wide")
 
@@ -47,6 +48,7 @@ st.write(
 # row is an interim (non-10-K) snapshot from press/secondary sources.
 era_data = {
     "End of 2023 (Bear Recovery)": {
+        "as_of": "2023-12-31",
         "btc_holdings": 189150,        # 189,150 BTC as of Dec 31, 2023
         "debt_billions": 2.20,         # ~$2.2B convertible/senior notes
         "annual_carry_billions": 0.02, # est. note interest only (mostly 0-0.75% converts); no preferred yet
@@ -57,6 +59,7 @@ era_data = {
         "floor_btc": 25000.0,
     },
     "End of 2024 (ETF Options Launch)": {
+        "as_of": "2024-12-31",
         "btc_holdings": 446400,        # 446,400 BTC as of Dec 31, 2024
         "debt_billions": 7.19,         # $7.19B long-term debt (10-K), no preferred
         "annual_carry_billions": 0.05, # est. low-coupon convert interest; no preferred yet
@@ -67,6 +70,7 @@ era_data = {
         "floor_btc": 30000.0,
     },
     "End of 2025 (Preferred Stack)": {
+        "as_of": "2025-12-31",
         "btc_holdings": 672500,        # 713,502 (Q4'25 report) - 41,002 bought Jan 2026
         "debt_billions": 16.22,        # $8.19B notes + $8.03B preferred liq. pref. (10-K)
         "annual_carry_billions": 0.75, # est. preferred dividends (~$8B @ ~8-9% blended) + note interest
@@ -85,6 +89,7 @@ era_data = {
         # 3,011,361 MSTR shares sold via ATM for $290.6M net proceeds ($250.0M to
         # USD Reserve, $28.9M to STRC repurchases, $11.7M to cash) and 912,143
         # STRC shares repurchased for $81.2M; no preferred shares were sold.
+        "as_of": "2026-08-02",
         "btc_holdings": 842138,
         "debt_billions": 22.08,        # prior ~$22.17B senior claims less $91.2M STRC liquidation preference repurchased Jul 27-Aug 2
         "annual_carry_billions": 1.75, # $1.76B (8-K Jun 29) less ~$11M/yr from 912,143 STRC retired @ $12/share
@@ -111,6 +116,7 @@ era_data = {
         # sold via ATM for $653.1M net proceeds ($650.0M to USD Reserve,
         # $3.1M to cash) and 1,152,020 STRC shares repurchased for $108.6M;
         # no preferred shares were sold.
+        "as_of": "2026-08-09",
         "btc_holdings": 840447,
         "debt_billions": 21.96,        # prior ~$22.08B senior claims less $115.2M STRC liquidation preference repurchased Aug 3-9
         "annual_carry_billions": 1.74, # $1.76B (8-K Jun 29) less ~$25M/yr from 2.06M STRC retired cumulatively @ $12/share
@@ -131,6 +137,7 @@ era_data = {
         # proceeds ($149.1M to USD Reserve, $132.2M to STRC repurchases,
         # $52.4M to STRC dividends) and 1,388,720 STRC shares repurchased for
         # $132.2M; no preferred shares were sold.
+        "as_of": "2026-08-16",
         "btc_holdings": 840447,
         "debt_billions": 21.82,        # prior ~$21.96B senior claims less $138.9M STRC liquidation preference repurchased Aug 10-16
         "annual_carry_billions": 1.72, # $1.76B (8-K Jun 29) less ~$41M/yr from 3.45M STRC retired cumulatively @ $12/share
@@ -157,6 +164,7 @@ era_data = {
         # Reserve, $136.4M to STRC repurchases, remaining $1,570.1M to USD
         # Cash) and 1,431,212 STRC shares repurchased for $136.4M; no
         # preferred shares were sold.
+        "as_of": "2026-08-23",
         "btc_holdings": 840447,
         "debt_billions": 21.68,        # prior ~$21.82B senior claims less $143.1M STRC liquidation preference repurchased Aug 17-23
         "annual_carry_billions": 1.70, # $1.76B (8-K Jun 29) less ~$59M/yr from 4.88M STRC retired cumulatively @ $12/share
@@ -181,6 +189,7 @@ era_data = {
         # $151.8M; no preferred shares were sold. $364.8M remains under the
         # Digital Credit Securities Repurchase Program and $1.0B under the
         # MSTR repurchase program.
+        "as_of": "2026-08-30",
         "btc_holdings": 845050,
         "debt_billions": 21.52,        # prior ~$21.68B senior claims less $155.7M STRC liquidation preference repurchased Aug 24-30
         "annual_carry_billions": 1.68, # $1.76B (8-K Jun 29) less ~$77M/yr from 6.44M STRC retired cumulatively @ $12/share
@@ -202,6 +211,7 @@ era_data = {
         # was 1,810,885 STRC shares repurchased for $176.3M, funded entirely
         # from USD Cash; no STRF/STRK/STRD/MSTR shares were sold or
         # repurchased. $1.0B remains under the MSTR repurchase program.
+        "as_of": "2026-09-07",
         "btc_holdings": 845050,
         "debt_billions": 21.34,        # prior ~$21.52B senior claims less $181.1M STRC liquidation preference repurchased Aug 31-Sep 7
         "annual_carry_billions": 1.66, # $1.76B (8-K Jun 29) less ~$99M/yr from 8.25M STRC retired cumulatively @ $12/share
@@ -223,6 +233,7 @@ era_data = {
         # STRF/STRK/STRD/MSTR shares were sold or repurchased. $1.05B remains
         # under the Digital Credit Securities Repurchase Program (down from
         # $1.19B) and $1.0B under the MSTR repurchase program.
+        "as_of": "2026-09-13",
         "btc_holdings": 845050,
         "debt_billions": 21.20,        # prior ~$21.34B senior claims less $142.0M STRC liquidation preference repurchased Sep 8-13
         "annual_carry_billions": 1.64, # $1.76B (8-K Jun 29) less ~$116M/yr from 9.67M STRC retired cumulatively @ $12/share
@@ -248,6 +259,7 @@ era_data = {
         # and debt interest. $875.1M remains under the Digital Credit
         # Securities Repurchase Program and $1.0B under the MSTR repurchase
         # program.
+        "as_of": "2026-09-20",
         "btc_holdings": 846000,
         "debt_billions": 21.02,        # prior ~$21.20B senior claims less $177.1M STRC liquidation preference repurchased Sep 14-20
         "annual_carry_billions": 1.62, # $1.76B (8-K Jun 29) less ~$137M/yr from 11.44M STRC retired cumulatively @ $12/share
@@ -280,6 +292,7 @@ era_data = {
         # million shares (~-0.17%). The premium-issuance flywheel is nearly
         # flat at these prices, and the NAV/accretion math is dominated by
         # the dividend drag rather than by issuance.
+        "as_of": "2026-09-27",
         "btc_holdings": 847666,
         "debt_billions": 20.87,        # prior ~$21.02B senior claims less $153.5M STRC liquidation preference repurchased Sep 21-27
         "annual_carry_billions": 1.60, # $1.76B (8-K Jun 29) less ~$156M/yr from 12.97M STRC retired cumulatively @ $12/share
@@ -672,6 +685,118 @@ with tab_dashboard:
         height=550,
     )
     st.plotly_chart(fig, width="stretch")
+
+    # ---------------------------------------------------------
+    # PREMIUM HISTORY: what the market paid over NAV, era by era
+    # ---------------------------------------------------------
+    st.markdown("---")
+    st.write("### Premium History: What the Market Paid Over NAV")
+    st.write(
+        "Each point is one era's anchor observation -- the anchor MSTR price "
+        "divided by that era's **own** NAV per share, so the series stays "
+        "comparable across different balance sheets. The BTC-per-share line is "
+        "the accretion test: it only rises while the issuance premium clears "
+        "the BTC-yield break-even (~1.3x NAV when every dollar of proceeds buys "
+        "BTC; ~2.2x when ~42% is diverted to preferred buybacks, as in the "
+        "Sep 28 week)."
+    )
+
+    # One observation per era: premium = anchor MSTR / that era's NAV/share.
+    hist_rows = []
+    for era_name, prof in era_data.items():
+        anchor_btc_i = prof["historical_btc_price"]
+        nav_i = (
+            anchor_btc_i * prof["btc_holdings"]
+            + prof.get("usd_reserve_billions", 0.0) * 1_000_000_000
+            + prof.get("usd_cash_billions", 0.0) * 1_000_000_000
+            - prof["debt_billions"] * 1_000_000_000
+        ) / (prof["shares_millions"] * 1_000_000)
+        hist_rows.append(
+            {
+                "Era": era_name,
+                "As of": pd.Timestamp(prof["as_of"]),
+                "Premium": prof["historical_mstr_price"] / nav_i,
+                "NAV / Share": nav_i,
+                "Anchor MSTR": prof["historical_mstr_price"],
+                "BTC per 1M Shares": prof["btc_holdings"] / prof["shares_millions"],
+            }
+        )
+    premium_history = pd.DataFrame(hist_rows).sort_values("As of")
+
+    fig_prem = make_subplots(specs=[[{"secondary_y": True}]])
+    fig_prem.add_trace(
+        go.Scatter(
+            x=premium_history["As of"],
+            y=premium_history["Premium"],
+            mode="lines+markers",
+            name="Observed premium (mNAV)",
+            line=dict(color="#1f77b4", width=2),
+            marker=dict(size=8),
+            text=premium_history["Era"],
+            customdata=np.stack(
+                [premium_history["NAV / Share"], premium_history["Anchor MSTR"]],
+                axis=-1,
+            ),
+            hovertemplate=(
+                "%{text}<br>%{x|%Y-%m-%d} -- premium %{y:.2f}x"
+                "<br>NAV/sh $%{customdata[0]:,.2f} -- anchor MSTR "
+                "$%{customdata[1]:,.2f}<extra></extra>"
+            ),
+        ),
+        secondary_y=False,
+    )
+    fig_prem.add_trace(
+        go.Scatter(
+            x=premium_history["As of"],
+            y=premium_history["BTC per 1M Shares"],
+            mode="lines+markers",
+            name="BTC per 1M shares (right)",
+            line=dict(color="#ff7300", width=1.5, dash="dot"),
+            marker=dict(size=6, symbol="diamond"),
+        ),
+        secondary_y=True,
+    )
+    fig_prem.add_hline(
+        y=1.0,
+        line=dict(color="#2ca02c", dash="dash", width=1.5),
+        annotation_text="1.0x NAV -- issuance break-even (ATM adds NAV only above this)",
+        annotation_position="bottom right",
+    )
+
+    # Flag the era currently loaded in the sidebar.
+    active_hist = premium_history[premium_history["Era"] == selected_era].iloc[0]
+    fig_prem.add_trace(
+        go.Scatter(
+            x=[active_hist["As of"]],
+            y=[active_hist["Premium"]],
+            mode="markers+text",
+            text=[f"selected era: {active_hist['Premium']:.2f}x"],
+            textposition="top center",
+            marker=dict(size=16, color="red", symbol="circle-open", line=dict(width=3)),
+            name="Selected era",
+        ),
+        secondary_y=False,
+    )
+
+    fig_prem.update_layout(
+        height=430,
+        hovermode="x unified",
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+    )
+    fig_prem.update_xaxes(title_text="Era snapshot date (8-K as-of)")
+    fig_prem.update_yaxes(
+        title_text="Premium over NAV (mNAV, x)", secondary_y=False, tickformat=".2f"
+    )
+    fig_prem.update_yaxes(
+        title_text="BTC per 1M shares", secondary_y=True, tickformat=",.0f"
+    )
+    st.plotly_chart(fig_prem, width="stretch")
+    st.caption(
+        "The two early-August snapshots still carry a stale early-July price "
+        "anchor (BTC $62.6k / MSTR $97), so they are dated by balance sheet but "
+        "priced off that July pair. Every premium uses its era's own holdings, "
+        "cash and claims -- not today's balance sheet."
+    )
 
     # Quick reference matrix.
     st.write("### Valuation Comparison Matrix")
