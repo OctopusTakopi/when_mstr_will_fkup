@@ -298,10 +298,12 @@ era_data = {
         # Reserve funded preferred dividends. $723.5M remains under the
         # Digital Credit Securities Repurchase Program and $1.0B under the
         # MSTR repurchase program.
-        # NOTE: issuing at ~$167.6/share to buy BTC at $85,681 is only
-        # marginally BTC-per-share accretive -- 2,110 -> 2,107 BTC per
-        # million shares (~-0.17%). The premium-issuance flywheel is nearly
-        # flat at these prices, and the NAV/accretion math is dominated by
+        # NOTE: issuing at ~$167.6/share to buy BTC at $85,681 is NAV-accretive
+        # but BTC-per-share dilutive: 2,110 -> 2,107 BTC per million shares
+        # (~-0.17%), because the 1.12x premium sits far below the ~2.18x
+        # BTC-yield break-even once 42% of the proceeds fund STRC buybacks.
+        # The issuance flywheel is stalled at these prices -- coin per share
+        # only grows above that break-even -- and the NAV math is dominated by
         # the dividend drag rather than by issuance.
         "as_of": "2026-09-27",
         "atm_btc_fraction": 0.580,     # $142.7M of $246.2M ATM net proceeds bought BTC
@@ -791,11 +793,9 @@ with tab_dashboard:
         go.Scatter(
             x=premium_history["As of"],
             y=premium_history["Break-even (actual f)"],
-            mode="lines+markers",
+            mode="markers",
             name="BTC-yield break-even (actual deployment)",
-            line=dict(color="#d62728", width=2, dash="dash"),
-            marker=dict(size=9, symbol="diamond"),
-            connectgaps=True,
+            marker=dict(size=9, symbol="diamond", color="#d62728"),
             hovertemplate="break-even at the 8-K's own split %{y:.2f}x<extra></extra>",
         ),
         secondary_y=False,
