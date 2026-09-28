@@ -44,8 +44,9 @@ st.write(
 # senior notes (balance-sheet carrying value) plus the liquidation preference of
 # preferred stock (preferred only exists from 2025 onward). Year-end figures are
 # taken directly from Strategy/MicroStrategy SEC filings (10-K balance sheets and
-# XBRL facts, CIK 0001050446); anchor prices are the Dec-31 closes. The Mid-2026
-# row is an interim (non-10-K) snapshot from press/secondary sources.
+# XBRL facts, CIK 0001050446); anchor prices are the year-end closes -- the last
+# trading day before the date when it falls on a weekend or holiday. The
+# Mid-2026 rows are interim (non-10-K) snapshots from press/secondary sources.
 era_data = {
     "End of 2023 (Bear Recovery)": {
         "as_of": "2023-12-31",
@@ -67,8 +68,12 @@ era_data = {
         "annual_carry_billions": 0.05, # est. low-coupon convert interest; no preferred yet
         "usd_reserve_billions": 0.0,   # USD Reserve not yet established
         "shares_millions": 245.78,     # 226,138,000 class A + 19,640,250 class B (10-K)
-        "historical_btc_price": 100000.0,
-        "historical_mstr_price": 380.00,
+        # Corrected pair: this era previously anchored to a round-number
+        # (BTC $100,000 / MSTR $380) that in fact describes mid-December 2024,
+        # not the year-end closes -- worth ~0.4x of premium on the history
+        # chart. Dec 31, 2024 was a trading day.
+        "historical_btc_price": 93429.2,   # BTC close Dec 31, 2024 $93,429.20
+        "historical_mstr_price": 289.62,   # MSTR close Dec 31, 2024 $289.62
         "floor_btc": 30000.0,
     },
     "End of 2025 (Preferred Stack)": {
@@ -852,10 +857,11 @@ with tab_dashboard:
         "sales (Sep 7-20) or whose proceeds went entirely to reserves, "
         "preferred or dividends (Aug 2-23, f = 0) have no finite break-even, so "
         "the red series only carries the two weeks whose 8-K documents a BTC "
-        "cut: 61.3% on Aug 30 and 58.0% on Sep 27. The two early-August "
-        "snapshots still carry a stale early-July price anchor (BTC $62.6k / "
-        "MSTR $97), so they are dated by balance sheet but priced off that July "
-        "pair; every premium uses its era's own holdings, cash and claims."
+        "cut: 61.3% on Aug 30 and 58.0% on Sep 27. Each point is dated by its "
+        "balance sheet and priced at the close on, or the last trading day "
+        "before, that date -- except the two early-August snapshots, which "
+        "still carry a stale early-July anchor (BTC $62.6k / MSTR $97). Every "
+        "premium uses its era's own holdings, cash and claims."
     )
 
     # Quick reference matrix.
