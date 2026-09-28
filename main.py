@@ -49,6 +49,7 @@ st.write(
 era_data = {
     "End of 2023 (Bear Recovery)": {
         "as_of": "2023-12-31",
+        "atm_btc_fraction": None,      # weekly ATM split not tracked for the 10-K snapshots
         "btc_holdings": 189150,        # 189,150 BTC as of Dec 31, 2023
         "debt_billions": 2.20,         # ~$2.2B convertible/senior notes
         "annual_carry_billions": 0.02, # est. note interest only (mostly 0-0.75% converts); no preferred yet
@@ -60,6 +61,7 @@ era_data = {
     },
     "End of 2024 (ETF Options Launch)": {
         "as_of": "2024-12-31",
+        "atm_btc_fraction": None,      # weekly ATM split not tracked for the 10-K snapshots
         "btc_holdings": 446400,        # 446,400 BTC as of Dec 31, 2024
         "debt_billions": 7.19,         # $7.19B long-term debt (10-K), no preferred
         "annual_carry_billions": 0.05, # est. low-coupon convert interest; no preferred yet
@@ -71,6 +73,7 @@ era_data = {
     },
     "End of 2025 (Preferred Stack)": {
         "as_of": "2025-12-31",
+        "atm_btc_fraction": None,      # weekly ATM split not tracked for the 10-K snapshots
         "btc_holdings": 672500,        # 713,502 (Q4'25 report) - 41,002 bought Jan 2026
         "debt_billions": 16.22,        # $8.19B notes + $8.03B preferred liq. pref. (10-K)
         "annual_carry_billions": 0.75, # est. preferred dividends (~$8B @ ~8-9% blended) + note interest
@@ -90,6 +93,7 @@ era_data = {
         # USD Reserve, $28.9M to STRC repurchases, $11.7M to cash) and 912,143
         # STRC shares repurchased for $81.2M; no preferred shares were sold.
         "as_of": "2026-08-02",
+        "atm_btc_fraction": 0.0,       # ATM: $250.0M to USD Reserve, $28.9M to STRC, $11.7M cash -- none to BTC
         "btc_holdings": 842138,
         "debt_billions": 22.08,        # prior ~$22.17B senior claims less $91.2M STRC liquidation preference repurchased Jul 27-Aug 2
         "annual_carry_billions": 1.75, # $1.76B (8-K Jun 29) less ~$11M/yr from 912,143 STRC retired @ $12/share
@@ -117,6 +121,7 @@ era_data = {
         # $3.1M to cash) and 1,152,020 STRC shares repurchased for $108.6M;
         # no preferred shares were sold.
         "as_of": "2026-08-09",
+        "atm_btc_fraction": 0.0,       # ATM: $650.0M to USD Reserve, $3.1M cash -- none to BTC
         "btc_holdings": 840447,
         "debt_billions": 21.96,        # prior ~$22.08B senior claims less $115.2M STRC liquidation preference repurchased Aug 3-9
         "annual_carry_billions": 1.74, # $1.76B (8-K Jun 29) less ~$25M/yr from 2.06M STRC retired cumulatively @ $12/share
@@ -138,6 +143,7 @@ era_data = {
         # $52.4M to STRC dividends) and 1,388,720 STRC shares repurchased for
         # $132.2M; no preferred shares were sold.
         "as_of": "2026-08-16",
+        "atm_btc_fraction": 0.0,       # ATM: $149.1M to USD Reserve, $132.2M STRC, $52.4M dividends -- none to BTC
         "btc_holdings": 840447,
         "debt_billions": 21.82,        # prior ~$21.96B senior claims less $138.9M STRC liquidation preference repurchased Aug 10-16
         "annual_carry_billions": 1.72, # $1.76B (8-K Jun 29) less ~$41M/yr from 3.45M STRC retired cumulatively @ $12/share
@@ -165,6 +171,7 @@ era_data = {
         # Cash) and 1,431,212 STRC shares repurchased for $136.4M; no
         # preferred shares were sold.
         "as_of": "2026-08-23",
+        "atm_btc_fraction": 0.0,       # ATM: $300.0M to USD Reserve, $136.4M STRC, $1,570.1M USD Cash -- none to BTC
         "btc_holdings": 840447,
         "debt_billions": 21.68,        # prior ~$21.82B senior claims less $143.1M STRC liquidation preference repurchased Aug 17-23
         "annual_carry_billions": 1.70, # $1.76B (8-K Jun 29) less ~$59M/yr from 4.88M STRC retired cumulatively @ $12/share
@@ -190,6 +197,7 @@ era_data = {
         # Digital Credit Securities Repurchase Program and $1.0B under the
         # MSTR repurchase program.
         "as_of": "2026-08-30",
+        "atm_btc_fraction": 0.613,     # $369.7M of $602.8M ATM net proceeds bought BTC
         "btc_holdings": 845050,
         "debt_billions": 21.52,        # prior ~$21.68B senior claims less $155.7M STRC liquidation preference repurchased Aug 24-30
         "annual_carry_billions": 1.68, # $1.76B (8-K Jun 29) less ~$77M/yr from 6.44M STRC retired cumulatively @ $12/share
@@ -212,6 +220,7 @@ era_data = {
         # from USD Cash; no STRF/STRK/STRD/MSTR shares were sold or
         # repurchased. $1.0B remains under the MSTR repurchase program.
         "as_of": "2026-09-07",
+        "atm_btc_fraction": None,      # no MSTR ATM sales during the week
         "btc_holdings": 845050,
         "debt_billions": 21.34,        # prior ~$21.52B senior claims less $181.1M STRC liquidation preference repurchased Aug 31-Sep 7
         "annual_carry_billions": 1.66, # $1.76B (8-K Jun 29) less ~$99M/yr from 8.25M STRC retired cumulatively @ $12/share
@@ -234,6 +243,7 @@ era_data = {
         # under the Digital Credit Securities Repurchase Program (down from
         # $1.19B) and $1.0B under the MSTR repurchase program.
         "as_of": "2026-09-13",
+        "atm_btc_fraction": None,      # no MSTR ATM sales during the week
         "btc_holdings": 845050,
         "debt_billions": 21.20,        # prior ~$21.34B senior claims less $142.0M STRC liquidation preference repurchased Sep 8-13
         "annual_carry_billions": 1.64, # $1.76B (8-K Jun 29) less ~$116M/yr from 9.67M STRC retired cumulatively @ $12/share
@@ -260,6 +270,7 @@ era_data = {
         # Securities Repurchase Program and $1.0B under the MSTR repurchase
         # program.
         "as_of": "2026-09-20",
+        "atm_btc_fraction": None,      # no MSTR ATM sales during the week
         "btc_holdings": 846000,
         "debt_billions": 21.02,        # prior ~$21.20B senior claims less $177.1M STRC liquidation preference repurchased Sep 14-20
         "annual_carry_billions": 1.62, # $1.76B (8-K Jun 29) less ~$137M/yr from 11.44M STRC retired cumulatively @ $12/share
@@ -293,6 +304,7 @@ era_data = {
         # flat at these prices, and the NAV/accretion math is dominated by
         # the dividend drag rather than by issuance.
         "as_of": "2026-09-27",
+        "atm_btc_fraction": 0.580,     # $142.7M of $246.2M ATM net proceeds bought BTC
         "btc_holdings": 847666,
         "debt_billions": 20.87,        # prior ~$21.02B senior claims less $153.5M STRC liquidation preference repurchased Sep 21-27
         "annual_carry_billions": 1.60, # $1.76B (8-K Jun 29) less ~$156M/yr from 12.97M STRC retired cumulatively @ $12/share
@@ -695,22 +707,34 @@ with tab_dashboard:
         "Each point is one era's anchor observation -- the anchor MSTR price "
         "divided by that era's **own** NAV per share, so the series stays "
         "comparable across different balance sheets. The BTC-per-share line is "
-        "the accretion test: it only rises while the issuance premium clears "
-        "the BTC-yield break-even (~1.3x NAV when every dollar of proceeds buys "
-        "BTC; ~2.2x when ~42% is diverted to preferred buybacks, as in the "
-        "Sep 28 week)."
+        "the accretion test: it only rises while the observed premium clears "
+        "the BTC-yield break-even."
     )
 
     # One observation per era: premium = anchor MSTR / that era's NAV/share.
+    #
+    # BTC-YIELD BREAK-EVEN -- the premium at which issuing stock leaves BTC per
+    # share unchanged. Issuing at m times NAV/share adds
+    # (m * NAV/share * f) / BTC_price coin per new share, while the shares
+    # already outstanding carry (holdings / shares) coin each, so BTC/share is
+    # flat at
+    #     m = (BTC value per share / NAV per share) / f
+    # where f is the share of the week's ATM proceeds actually spent on BTC.
+    # f = 0 (proceeds to reserves, preferred or dividends) has no finite
+    # break-even, and weeks with no issuance have none either; both plot as
+    # gaps.
     hist_rows = []
     for era_name, prof in era_data.items():
         anchor_btc_i = prof["historical_btc_price"]
+        shares_i = prof["shares_millions"] * 1_000_000
         nav_i = (
             anchor_btc_i * prof["btc_holdings"]
             + prof.get("usd_reserve_billions", 0.0) * 1_000_000_000
             + prof.get("usd_cash_billions", 0.0) * 1_000_000_000
             - prof["debt_billions"] * 1_000_000_000
-        ) / (prof["shares_millions"] * 1_000_000)
+        ) / shares_i
+        btc_backing_multiple = anchor_btc_i * prof["btc_holdings"] / shares_i / nav_i
+        atm_btc_fraction = prof.get("atm_btc_fraction") or 0.0
         hist_rows.append(
             {
                 "Era": era_name,
@@ -719,6 +743,12 @@ with tab_dashboard:
                 "NAV / Share": nav_i,
                 "Anchor MSTR": prof["historical_mstr_price"],
                 "BTC per 1M Shares": prof["btc_holdings"] / prof["shares_millions"],
+                "Break-even (f=1)": btc_backing_multiple,
+                "Break-even (actual f)": (
+                    btc_backing_multiple / atm_btc_fraction
+                    if atm_btc_fraction > 0
+                    else float("nan")
+                ),
             }
         )
     premium_history = pd.DataFrame(hist_rows).sort_values("As of")
@@ -742,6 +772,31 @@ with tab_dashboard:
                 "<br>NAV/sh $%{customdata[0]:,.2f} -- anchor MSTR "
                 "$%{customdata[1]:,.2f}<extra></extra>"
             ),
+        ),
+        secondary_y=False,
+    )
+    fig_prem.add_trace(
+        go.Scatter(
+            x=premium_history["As of"],
+            y=premium_history["Break-even (f=1)"],
+            mode="lines+markers",
+            name="BTC-yield break-even (all proceeds to BTC)",
+            line=dict(color="#9467bd", width=1.5, dash="dot"),
+            marker=dict(size=5),
+            hovertemplate="all-proceeds break-even %{y:.2f}x<extra></extra>",
+        ),
+        secondary_y=False,
+    )
+    fig_prem.add_trace(
+        go.Scatter(
+            x=premium_history["As of"],
+            y=premium_history["Break-even (actual f)"],
+            mode="lines+markers",
+            name="BTC-yield break-even (actual deployment)",
+            line=dict(color="#d62728", width=2, dash="dash"),
+            marker=dict(size=9, symbol="diamond"),
+            connectgaps=True,
+            hovertemplate="break-even at the 8-K's own split %{y:.2f}x<extra></extra>",
         ),
         secondary_y=False,
     )
@@ -779,7 +834,7 @@ with tab_dashboard:
     )
 
     fig_prem.update_layout(
-        height=430,
+        height=470,
         hovermode="x unified",
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
     )
@@ -792,10 +847,15 @@ with tab_dashboard:
     )
     st.plotly_chart(fig_prem, width="stretch")
     st.caption(
-        "The two early-August snapshots still carry a stale early-July price "
-        "anchor (BTC $62.6k / MSTR $97), so they are dated by balance sheet but "
-        "priced off that July pair. Every premium uses its era's own holdings, "
-        "cash and claims -- not today's balance sheet."
+        "Break-even = (BTC value per share / NAV per share) / f, with f the "
+        "share of that week's ATM proceeds spent on BTC. Weeks with no ATM "
+        "sales (Sep 7-20) or whose proceeds went entirely to reserves, "
+        "preferred or dividends (Aug 2-23, f = 0) have no finite break-even, so "
+        "the red series only carries the two weeks whose 8-K documents a BTC "
+        "cut: 61.3% on Aug 30 and 58.0% on Sep 27. The two early-August "
+        "snapshots still carry a stale early-July price anchor (BTC $62.6k / "
+        "MSTR $97), so they are dated by balance sheet but priced off that July "
+        "pair; every premium uses its era's own holdings, cash and claims."
     )
 
     # Quick reference matrix.

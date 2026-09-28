@@ -26,10 +26,12 @@ Opens at http://localhost:8501.
   reproduce the era's anchor exactly.
 
 The dashboard also charts the **premium history**: every era's anchor premium
-(MSTR price over its own NAV per share) next to BTC per share, with the 1.0x NAV
-issuance break-even marked. The share count only grows coin per share while the
-issuance premium clears the BTC-yield break-even (~1.3x NAV if all ATM proceeds
-buy BTC, higher when some fund preferred buybacks).
+(MSTR price over its own NAV per share) next to BTC per share, against three
+reference levels — the 1.0x NAV issuance break-even, the BTC-yield break-even
+when every ATM dollar buys BTC (~1.3x NAV in mid-2026), and the BTC-yield
+break-even at the split each 8-K actually reports (~2.1–2.2x, since part of the
+proceeds funds preferred buybacks). Coin per share only grows while the premium
+clears that last line.
 
 The "Mathematical Derivations" tab in the app walks through the full
 derivation and shows a live calibration check.
