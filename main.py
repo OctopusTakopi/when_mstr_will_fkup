@@ -260,6 +260,38 @@ era_data = {
         "regression_anchor_btc": 118368.0,
         "regression_anchor_mstr": 414.92,
     },
+    "Mid 2026 (ATM Reopened)": {
+        # 847,666 BTC as of Sep 27, 2026 (8-K filed Sep 28, 2026); aggregate
+        # cost $63.95B, average $75,437/BTC. Bitcoin purchases continued off
+        # the prior week's USD-Cash-funded buy: 1,665 BTC bought Sep 21-27
+        # for $142.7M at an average $85,681/BTC -- the highest purchase price
+        # of the cycle -- funded entirely by MSTR ATM proceeds. ATM sales
+        # restarted after three idle weeks: 1,469,165 Class A shares for
+        # $246.2M net proceeds (~$167.6/share, far above the Sep 18 close of
+        # $153.92). Proceeds were split $142.7M to bitcoin and $103.5M to
+        # STRC, with a further $48.1M of USD Cash also funding STRC: the
+        # week's 1,534,530 STRC shares repurchased for $151.7M cost ~$98.86,
+        # a discount to the $100 liquidation preference. $22.1M of the USD
+        # Reserve funded preferred dividends. $723.5M remains under the
+        # Digital Credit Securities Repurchase Program and $1.0B under the
+        # MSTR repurchase program.
+        # NOTE: issuing at ~$167.6/share to buy BTC at $85,681 is only
+        # marginally BTC-per-share accretive -- 2,110 -> 2,107 BTC per
+        # million shares (~-0.17%). The premium-issuance flywheel is nearly
+        # flat at these prices, and the NAV/accretion math is dominated by
+        # the dividend drag rather than by issuance.
+        "btc_holdings": 847666,
+        "debt_billions": 20.87,        # prior ~$21.02B senior claims less $153.5M STRC liquidation preference repurchased Sep 21-27
+        "annual_carry_billions": 1.60, # $1.76B (8-K Jun 29) less ~$156M/yr from 12.97M STRC retired cumulatively @ $12/share
+        "usd_reserve_billions": 5.02,  # USD Reserve as of Sep 27, 2026 (8-K filed Sep 28, 2026); $22.1M used for preferred dividends
+        "usd_cash_billions": 1.00,     # USD Cash as of Sep 27, 2026 (8-K filed Sep 28, 2026); $48.1M used for STRC repurchases
+        "shares_millions": 402.37,     # prior ~400.90M + 1,469,165 Class A sold via ATM Sep 21-27, 2026 (8-K)
+        "historical_btc_price": 84458.0,    # BTC close Sep 27, 2026 $84,458.09
+        "historical_mstr_price": 158.61,    # MSTR close Sep 25, 2026 $158.61 (last trading day before the Sep 27 snapshot)
+        "floor_btc": 30000.0,
+        "regression_anchor_btc": 118368.0,
+        "regression_anchor_mstr": 414.92,
+    },
 }
 
 # ---------------------------------------------------------
@@ -267,7 +299,7 @@ era_data = {
 # ---------------------------------------------------------
 st.sidebar.header("1. Select Target Era Configuration")
 selected_era = st.sidebar.selectbox(
-    "Active Balance Sheet Profile", list(era_data.keys()), index=10
+    "Active Balance Sheet Profile", list(era_data.keys()), index=11
 )
 
 # Load data state based on selection.
