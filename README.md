@@ -29,9 +29,11 @@ The dashboard also charts the **premium history**: every era's anchor premium
 (MSTR price over its own NAV per share) next to BTC per share, against three
 reference levels — the 1.0x NAV issuance break-even, the BTC-yield break-even
 when every ATM dollar buys BTC (~1.3x NAV in mid-2026), and the BTC-yield
-break-even at the split each 8-K actually reports (~2.1–2.2x, since part of the
-proceeds funds preferred buybacks). Coin per share only grows while the premium
-clears that last line.
+break-even at the split each 8-K actually reports (~2.1–2.2x when part of the
+proceeds funds preferred buybacks, falling back to the all-proceeds line on a
+week whose raise is small enough to go 100% into BTC). Coin per share only grows
+from issuance while the premium clears that last line; BTC bought out of the
+USD Cash pool adds coin without issuing stock.
 
 The "Mathematical Derivations" tab in the app walks through the full
 derivation and shows a live calibration check.

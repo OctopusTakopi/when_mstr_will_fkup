@@ -293,9 +293,9 @@ era_data = {
         # cost $63.95B, average $75,437/BTC. Bitcoin purchases continued off
         # the prior week's USD-Cash-funded buy: 1,665 BTC bought Sep 21-27
         # for $142.7M at an average $85,681/BTC -- the highest purchase price
-        # of the cycle -- funded entirely by MSTR ATM proceeds. ATM sales
-        # restarted after three idle weeks: 1,469,165 Class A shares for
-        # $246.2M net proceeds (~$167.6/share, far above the Sep 18 close of
+        # of the cycle through Sep 27 -- funded entirely by MSTR ATM proceeds.
+        # ATM sales restarted after three idle weeks: 1,469,165 Class A shares
+        # for $246.2M net proceeds (~$167.6/share, far above the Sep 18 close of
         # $153.92). Proceeds were split $142.7M to bitcoin and $103.5M to
         # STRC, with a further $48.1M of USD Cash also funding STRC: the
         # week's 1,534,530 STRC shares repurchased for $151.7M cost ~$98.86,
@@ -324,6 +324,48 @@ era_data = {
         "regression_anchor_btc": 118368.0,
         "regression_anchor_mstr": 414.92,
     },
+    "Mid 2026 (Issuance Trickle)": {
+        # 848,000 BTC as of Oct 4, 2026 (8-K filed Oct 5, 2026); aggregate
+        # cost $63.97B, average $75,441/BTC. All of the week's (Sep 28-Oct 4)
+        # activity fell in the Oct 1-4 stub: a 334 BTC purchase for $28.7M at
+        # an average $85,839/BTC -- the smallest buy of the cycle -- funded
+        # $15.7M from MSTR ATM proceeds and $13.0M from USD Cash. ATM sales
+        # shrank to a trickle: 92,894 Class A shares for $15.7M net proceeds,
+        # all deployed into bitcoin (f = 1.0), and no preferred stock was
+        # issued. Capital activity was entirely buybacks again: 1,773,802
+        # STRC shares repurchased for $176.3M ($154.1M from USD Cash plus
+        # $22.2M of interest earned), draining USD Cash to $833.4M, while
+        # $142.5M of the USD Reserve funded preferred dividends and debt
+        # interest ($5.02B -> $4.88B). $547.2M remains under the Digital
+        # Credit Securities Repurchase Program and $1.0B under the MSTR
+        # repurchase program. The Q3 update in the same filing reports a
+        # $20.91B digital-asset gain, a $70.82B carrying value and a $1.88B
+        # net deferred tax liability.
+        # NOTE: this is the first week whose ATM proceeds went 100% to BTC
+        # (f = 1.0), pulling the coin-per-share break-even down to ~1.26x.
+        # The raise itself was still coin-dilutive: shares went out at ~$169
+        # (~1.17x the anchor NAV, below that break-even), so the ~183
+        # ATM-funded BTC added fewer coins per share than the 92,894 new
+        # shares consumed (~-0.002%). Coin per share rose 2,106.7 -> 2,107.0
+        # (+0.02%) only because the other ~151 BTC came from the USD Cash
+        # pool -- cash buys add coin without issuing shares, and the f-based
+        # break-even does not cover them. The dividend and buyback drain
+        # (~$319M this week) still dominates the balance-sheet flow, not the
+        # issuance flywheel.
+        "as_of": "2026-10-04",
+        "atm_btc_fraction": 1.0,       # all $15.7M of ATM net proceeds (92,894 MSTR shares sold Oct 1-4) bought BTC
+        "btc_holdings": 848000,
+        "debt_billions": 20.69,        # prior ~$20.87B senior claims less $177.4M STRC liquidation preference repurchased Sep 28-Oct 4
+        "annual_carry_billions": 1.58, # $1.76B (8-K Jun 29) less ~$177M/yr from 14.74M STRC retired cumulatively @ $12/share
+        "usd_reserve_billions": 4.88,  # USD Reserve as of Oct 4, 2026 (8-K filed Oct 5, 2026); $142.5M used for preferred dividends and debt interest
+        "usd_cash_billions": 0.83,     # USD Cash as of Oct 4, 2026 (8-K filed Oct 5, 2026); $154.1M STRC buybacks + $13.0M BTC
+        "shares_millions": 402.46,     # prior ~402.37M + 92,894 Class A sold via ATM Oct 1-4, 2026 (8-K)
+        "historical_btc_price": 86480.0,    # BTC close Oct 4, 2026 $86,480.30
+        "historical_mstr_price": 160.01,    # MSTR close Oct 2, 2026 $160.01 (last trading day before the Oct 4 snapshot)
+        "floor_btc": 30000.0,
+        "regression_anchor_btc": 118368.0,
+        "regression_anchor_mstr": 414.92,
+    },
 }
 
 # ---------------------------------------------------------
@@ -331,7 +373,7 @@ era_data = {
 # ---------------------------------------------------------
 st.sidebar.header("1. Select Target Era Configuration")
 selected_era = st.sidebar.selectbox(
-    "Active Balance Sheet Profile", list(era_data.keys()), index=11
+    "Active Balance Sheet Profile", list(era_data.keys()), index=12
 )
 
 # Load data state based on selection.
@@ -714,8 +756,9 @@ with tab_dashboard:
         "Each point is one era's anchor observation -- the anchor MSTR price "
         "divided by that era's **own** NAV per share, so the series stays "
         "comparable across different balance sheets. The BTC-per-share line is "
-        "the accretion test: it only rises while the observed premium clears "
-        "the BTC-yield break-even."
+        "the issuance accretion test: ATM-funded coin only grows while the "
+        "observed premium clears the BTC-yield break-even; coin bought with "
+        "USD Cash adds without issuing shares."
     )
 
     # One observation per era: premium = anchor MSTR / that era's NAV/share.
@@ -856,12 +899,14 @@ with tab_dashboard:
         "share of that week's ATM proceeds spent on BTC. Weeks with no ATM "
         "sales (Sep 7-20) or whose proceeds went entirely to reserves, "
         "preferred or dividends (Aug 2-23, f = 0) have no finite break-even, so "
-        "the red series only carries the two weeks whose 8-K documents a BTC "
-        "cut: 61.3% on Aug 30 and 58.0% on Sep 27. Each point is dated by its "
-        "balance sheet and priced at the close on, or the last trading day "
-        "before, that date -- except the two early-August snapshots, which "
-        "still carry a stale early-July anchor (BTC $62.6k / MSTR $97). Every "
-        "premium uses its era's own holdings, cash and claims."
+        "the red series only carries the weeks whose 8-K documents a BTC cut: "
+        "61.3% on Aug 30 and 58.0% on Sep 27, plus 100% on Oct 4 -- a $15.7M "
+        "trickle of ATM proceeds, all into BTC, so its diamond sits on the "
+        "all-proceeds line. Each point is dated by its balance sheet and "
+        "priced at the close on, or the last trading day before, that date -- "
+        "except the two early-August snapshots, which still carry a stale "
+        "early-July anchor (BTC $62.6k / MSTR $97). Every premium uses its "
+        "era's own holdings, cash and claims."
     )
 
     # Quick reference matrix.
