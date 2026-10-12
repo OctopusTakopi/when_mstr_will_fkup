@@ -366,6 +366,43 @@ era_data = {
         "regression_anchor_btc": 118368.0,
         "regression_anchor_mstr": 414.92,
     },
+    "Mid 2026 (Largest STRC Week)": {
+        # 848,250 BTC as of Oct 11, 2026 (8-K filed Oct 12, 2026); aggregate
+        # cost $64.00B, average $75,444/BTC. Smallest buy of the cycle: 250
+        # BTC for $21.5M at an average $86,194/BTC, funded $21.0M from MSTR
+        # ATM proceeds and $0.5M from USD Cash. ATM sales stayed a trickle:
+        # 125,183 Class A shares for $21.0M net proceeds (~$167.8/share), all
+        # deployed into bitcoin (f = 1.0); no preferred stock was issued. The
+        # week's capital activity was the buyback: 1,932,145 STRC shares
+        # repurchased for $192.4M (~$99.58, a discount to the $100 liquidation
+        # preference), the largest weekly STRC cash outlay of the program,
+        # funded entirely from USD Cash ($833.4M -> $640.5M). The USD Reserve
+        # was unchanged at $4.88B -- no dividend or interest draw this week.
+        # $354.8M remains under the Digital Credit Securities Repurchase
+        # Program (down from $547.2M by the $192.4M spent) and $1.0B under
+        # the MSTR repurchase program.
+        # NOTE: second week in a row with ATM proceeds 100% to BTC (f = 1.0),
+        # so the coin-per-share break-even stays on the all-proceeds line
+        # (~1.27x at this anchor). The raise was still coin-dilutive: shares
+        # went out at ~$167.8 (~1.21x the anchor NAV, below that break-even),
+        # and the ~244 ATM-funded BTC did not cover the 125,183 new shares.
+        # The ~6 BTC bought with USD Cash were too few to offset that, so
+        # coin per share is flat at ~2,107 (~-0.003%). The $192.4M STRC
+        # repurchase, not the issuance, is the week's balance-sheet flow.
+        "as_of": "2026-10-11",
+        "atm_btc_fraction": 1.0,       # all $21.0M of ATM net proceeds (125,183 MSTR shares sold Oct 5-11) bought BTC
+        "btc_holdings": 848250,
+        "debt_billions": 20.50,        # prior ~$20.69B senior claims less $193.2M STRC liquidation preference repurchased Oct 5-11
+        "annual_carry_billions": 1.56, # $1.76B (8-K Jun 29) less ~$200M/yr from 16.68M STRC retired cumulatively @ $12/share
+        "usd_reserve_billions": 4.88,  # USD Reserve as of Oct 11, 2026 (8-K filed Oct 12, 2026); unchanged, no dividend/interest draw
+        "usd_cash_billions": 0.64,     # USD Cash as of Oct 11, 2026 (8-K filed Oct 12, 2026); $640.5M after $192.4M STRC + $0.5M BTC
+        "shares_millions": 402.59,     # prior ~402.46M + 125,183 Class A sold via ATM Oct 5-11, 2026 (8-K)
+        "historical_btc_price": 83679.0,    # BTC close Oct 11, 2026 $83,679.47
+        "historical_mstr_price": 154.34,    # MSTR close Oct 9, 2026 $154.34 (last trading day before the Oct 11 snapshot)
+        "floor_btc": 30000.0,
+        "regression_anchor_btc": 118368.0,
+        "regression_anchor_mstr": 414.92,
+    },
 }
 
 # ---------------------------------------------------------
@@ -373,7 +410,7 @@ era_data = {
 # ---------------------------------------------------------
 st.sidebar.header("1. Select Target Era Configuration")
 selected_era = st.sidebar.selectbox(
-    "Active Balance Sheet Profile", list(era_data.keys()), index=12
+    "Active Balance Sheet Profile", list(era_data.keys()), index=13
 )
 
 # Load data state based on selection.
@@ -900,9 +937,10 @@ with tab_dashboard:
         "sales (Sep 7-20) or whose proceeds went entirely to reserves, "
         "preferred or dividends (Aug 2-23, f = 0) have no finite break-even, so "
         "the red series only carries the weeks whose 8-K documents a BTC cut: "
-        "61.3% on Aug 30 and 58.0% on Sep 27, plus 100% on Oct 4 -- a $15.7M "
-        "trickle of ATM proceeds, all into BTC, so its diamond sits on the "
-        "all-proceeds line. Each point is dated by its balance sheet and "
+        "61.3% on Aug 30 and 58.0% on Sep 27, plus 100% on Oct 4 and Oct 11 -- "
+        "two small raises ($15.7M, then $21.0M) whose ATM proceeds went entirely "
+        "into BTC, so those diamonds sit on the all-proceeds line. Each point "
+        "is dated by its balance sheet and "
         "priced at the close on, or the last trading day before, that date -- "
         "except the two early-August snapshots, which still carry a stale "
         "early-July anchor (BTC $62.6k / MSTR $97). Every premium uses its "
